@@ -27,7 +27,10 @@ public class BookServiceImpl implements BookService {
     public List<BookDTO> findBooks(String searchString, Role userRole) {
         return bookRepository.findAll().stream()
                 .filter(book -> visibleForRole(book.getRoles(), userRole))
-                .filter(book -> book.getAuthor().contains(searchString) || book.getTitle().contains(searchString))
+                .filter(book -> book.getAuthor().toUpperCase()
+                        .contains(searchString.toUpperCase()) ||
+                        book.getTitle().toUpperCase()
+                        .contains(searchString.toUpperCase()))
                 .map(BookDTO::new)
                 .collect(Collectors.toList());
     }
@@ -46,12 +49,17 @@ public class BookServiceImpl implements BookService {
     }
 
     private boolean visibleForRole(String bookRoles, Role userRole) {
+        if (userRole.getUniversityCode().equals("ADMIN")
+        || userRole.getUniversityCode().equals("TEST")) {
+            return true;
+        }
         String[] roles = bookRoles.split(",");
         for (String bookRoleValue : roles) {
             if (bookRoleValue.isEmpty()) {
                 logger.error("book role value is null");
                 continue;
             }
+
             Role bookRole = new Role(bookRoleValue);
             if (bookRole.getUniversityCode() == null) { // Книга доступна для всех
                 return true;

@@ -1,8 +1,10 @@
 package ru.mikhail.server.util;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.SneakyThrows;
 import org.json.simple.JSONObject;
+import ru.mikhail.server.model.Book;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,13 @@ public class JsonWrapper {
     @SneakyThrows
     public static String wrapObject(Object object) {
         return new JsonMapper().writeValueAsString(object);
+    }
+
+    @SneakyThrows
+    public static String wrapBook(Book book) {
+        JsonMapper mapper = new JsonMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        return mapper.writeValueAsString(book);
     }
 
     @SneakyThrows

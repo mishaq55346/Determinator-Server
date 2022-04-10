@@ -63,7 +63,7 @@ public class BooksController {
                     .body(JsonWrapper.wrapErrorResponse("There is no books with such id"));
         }
         return ResponseEntity.ok()
-                .body(JsonWrapper.wrapObject(requestedBook));
+                .body(JsonWrapper.wrapBook((Book) requestedBook));
     }
 
     @RequestMapping(path = "/book/list", method = POST,
@@ -130,7 +130,7 @@ public class BooksController {
             return getErrorResponseEntity(FORBIDDEN, "Bad credentials");
         }
         Role role = authenticationProvider.getRole(credentials.getLeft());
-        return ResponseEntity.ok().body(role.toString());
+        return ResponseEntity.ok().body(role.getUniversityCode());
     }
 
 
