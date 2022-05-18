@@ -38,9 +38,6 @@ class DatabaseAuthenticationProviderTest {
         when(passwordEncoderBean.matches("bad password", "good password")).thenReturn(false);
         when(passwordEncoderBean.matches("good password", "good password")).thenReturn(true);
 
-
-
-
         databaseAuthenticationProvider =
                 new DatabaseAuthenticationProvider(userRepository, roleRepository, passwordEncoderBean);
     }

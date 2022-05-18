@@ -1,5 +1,6 @@
 package ru.mikhail.server.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class BookServiceImpl implements BookService {
-    protected final static Log logger = LogFactory.getLog(BookServiceImpl.class);
-
-
     private final BookRepository bookRepository;
 
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-
 
     @Override
     public List<BookDTO> findBooks(String searchString, Role userRole) {
@@ -56,7 +54,7 @@ public class BookServiceImpl implements BookService {
         String[] roles = bookRoles.split(",");
         for (String bookRoleValue : roles) {
             if (bookRoleValue.isEmpty()) {
-                logger.error("book role value is null");
+                log.error("book role value is null");
                 continue;
             }
 

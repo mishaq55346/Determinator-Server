@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.SneakyThrows;
 import org.json.simple.JSONObject;
 import ru.mikhail.server.model.Book;
+import ru.mikhail.server.model.UserDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -37,5 +38,12 @@ public class JsonWrapper {
     @SneakyThrows
     public static String wrapErrorResponse(String error) {
         return new JsonMapper().writeValueAsString(error);
+    }
+
+    @SneakyThrows
+    public static String wrapUser(UserDTO userInfo) {
+        JsonMapper mapper = new JsonMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        return mapper.writeValueAsString(userInfo);
     }
 }
