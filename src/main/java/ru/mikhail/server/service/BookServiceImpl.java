@@ -1,9 +1,8 @@
 package ru.mikhail.server.service;
 
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mikhail.server.model.Book;
 import ru.mikhail.server.model.BookDTO;
 import ru.mikhail.server.model.Role;
@@ -22,6 +21,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public List<BookDTO> findBooks(String searchString, Role userRole) {
         return bookRepository.findAll().stream()
                 .filter(book -> visibleForRole(book.getRoles(), userRole))
@@ -34,6 +34,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public List<BookDTO> getAll(Role userRole) {
         return bookRepository.findAll().stream()
                 .filter(book -> visibleForRole(book.getRoles(), userRole))
@@ -42,6 +43,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book getBook(long id) {
         return bookRepository.getById(id);
     }
