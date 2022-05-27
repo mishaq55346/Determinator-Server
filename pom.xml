@@ -10,7 +10,10 @@
     </parent>
     <groupId>ru.mikhail</groupId>
     <artifactId>server</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
+
+    <packaging>jar</packaging>
+
     <name>Determinator Server</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -65,7 +68,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.9</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
@@ -75,10 +77,8 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.17</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

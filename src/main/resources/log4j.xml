@@ -4,7 +4,7 @@
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="maxFileSize" value="1KB"/>
         <param name="maxBackupIndex" value="10"/>
-        <param name="file" value="target/logfile.log"/>
+        <param name="file" value="log/logfile.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
         </layout>
@@ -13,7 +13,7 @@
     <appender name="errorFileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="maxFileSize" value="1KB"/>
         <param name="maxBackupIndex" value="10"/>
-        <param name="file" value="target/error.log"/>
+        <param name="file" value="log/error.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
         </layout>
@@ -23,6 +23,7 @@
         <priority value="all"/>
         <appender-ref ref="fileAppender"/>
     </category>
+
     <category name="ru.mikhail.server">
         <priority value="error"/>
         <appender-ref ref="errorFileAppender"/>
