@@ -4,17 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class RequestParser {
-    protected final static Log logger = LogFactory.getLog(RequestParser.class);
+    private transient final Logger logger = Logger.getLogger(this.getClass());
 
     private final JsonNode root;
 

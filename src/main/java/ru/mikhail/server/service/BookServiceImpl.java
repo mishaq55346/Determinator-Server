@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService {
                 .filter(book -> book.getAuthor().toUpperCase()
                         .contains(searchString.toUpperCase()) ||
                         book.getTitle().toUpperCase()
-                        .contains(searchString.toUpperCase()))
+                                .contains(searchString.toUpperCase()))
                 .map(BookDTO::new)
                 .collect(Collectors.toList());
     }
@@ -48,7 +48,7 @@ public class BookServiceImpl implements BookService {
 
     private boolean visibleForRole(String bookRoles, Role userRole) {
         if (userRole.getUniversityCode().equals("ADMIN")
-        || userRole.getUniversityCode().equals("TEST")) {
+                || userRole.getUniversityCode().equals("TEST")) {
             return true;
         }
         String[] roles = bookRoles.split(",");

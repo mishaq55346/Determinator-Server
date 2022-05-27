@@ -11,7 +11,7 @@ public class UserDTO {
     private String universityName;
     private String groupName;
 
-    public static UserDTO fromUser(User user, Role role){
+    public static UserDTO fromUser(User user, Role role) {
         return new UserDTO(
                 user.getFio(),
                 user.getEmail(),

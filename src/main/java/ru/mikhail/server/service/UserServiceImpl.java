@@ -9,7 +9,7 @@ import ru.mikhail.server.repository.UserRepository;
 
 @Service
 @Log4j2
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

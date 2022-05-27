@@ -1,7 +1,6 @@
 package ru.mikhail.server.authentication;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.mikhail.server.config.PasswordEncoderBean;
 import ru.mikhail.server.model.Role;
@@ -11,7 +10,7 @@ import ru.mikhail.server.repository.UserRepository;
 
 @Component
 public class DatabaseAuthenticationProvider implements AuthenticationProvider {
-    protected final static Log logger = LogFactory.getLog(DatabaseAuthenticationProvider.class);
+    private transient final Logger logger = Logger.getLogger(this.getClass());
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
