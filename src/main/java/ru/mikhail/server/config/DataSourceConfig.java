@@ -1,5 +1,6 @@
 package ru.mikhail.server.config;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource("classpath:db.properties")
 public class DataSourceConfig {
+    private transient final Logger logger = Logger.getLogger(this.getClass());
     @Value("${db.url}")
     String url;
     @Value("${db.driver}")
@@ -27,6 +29,7 @@ public class DataSourceConfig {
         dm.setDriverClassName(driver);
         dm.setUsername(username);
         dm.setPassword(password);
+        logger.info("Database instantiated.");
         return dm;
     }
 }

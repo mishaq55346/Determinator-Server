@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="maxFileSize" value="1KB"/>
-        <param name="maxBackupIndex" value="10"/>
+    <appender name="fileAppender" class="org.apache.log4j.FileAppender">
+        <param name="threshold" value="INFO" />
         <param name="file" value="log/logfile.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
         </layout>
     </appender>
-
-    <appender name="errorFileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="maxFileSize" value="1KB"/>
-        <param name="maxBackupIndex" value="10"/>
-        <param name="file" value="log/error.log"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
-        </layout>
-    </appender>
-
-    <category name="ru.mikhail.server">
-        <priority value="all"/>
+    <root>
+        <priority value="INFO"/>
         <appender-ref ref="fileAppender"/>
-    </category>
-
-    <category name="ru.mikhail.server">
-        <priority value="error"/>
-        <appender-ref ref="errorFileAppender"/>
-    </category>
+    </root>
 </log4j:configuration>

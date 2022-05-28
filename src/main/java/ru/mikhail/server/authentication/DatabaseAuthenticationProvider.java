@@ -8,6 +8,8 @@ import ru.mikhail.server.model.User;
 import ru.mikhail.server.repository.RoleRepository;
 import ru.mikhail.server.repository.UserRepository;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class DatabaseAuthenticationProvider implements AuthenticationProvider {
     private transient final Logger logger = Logger.getLogger(this.getClass());
@@ -20,6 +22,11 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @PostConstruct
+    private void init(){
+        logger.info("AuthenticationProvider instantiated.");
     }
 
     @Override
